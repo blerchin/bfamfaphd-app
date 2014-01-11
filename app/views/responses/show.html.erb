@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @response.user %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @response.question %>
+</p>
+
+<p>
+  <strong>Int val:</strong>
+  <%= @response.int_val %>
+</p>
+
+<p>
+  <strong>String val:</strong>
+  <%= @response.string_val %>
+</p>
+
+<%= link_to 'Edit', edit_response_path(@response) %> |
+<%= link_to 'Back', responses_path %>

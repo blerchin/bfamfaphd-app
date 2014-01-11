@@ -1,0 +1,105 @@
+<div class="container">
+	<div class="page-header">
+		<h1>BFAMFAPHD.com
+			<small>Artist Application</small>
+		</h1>
+	</div>
+	<div class="jumbotron">
+			<div class="question-group">
+				<form>
+					<h2>So you want to join forces?</h2>
+					<p>We have a few questions for you. Click below to get started.</p>
+					<p><input type="submit" value="Get Started" class="btn btn-primary btn-lg" role="button"/></p>	
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div class="survey-questions hidden">
+	<% user = User.create %>
+
+	<div id="question-email" class="question-group email">
+		<%= form_for(user) do |f| %>
+			<%= f.label "What is your email?" %>
+			<p>Entering your email will allow you to resume this application or edit your answers later. It will also allow us to contact you with news and information about this project. This field is not required.
+			<%= f.text_field :email %>
+			<%= f.submit %>
+
+		<% end %>
+	</div>
+
+	<% qid = 5 %>
+	<div id="question-<%= qid %>" class="question-group <%= qid %>">
+		<% q = Question.find( qid ) %>
+		<% r = Response.new %>
+		<%= form_for(r) do |f|%>
+			<%= hidden_field_tag :user_id, user.id %>
+			<%= hidden_field_tag :question_id, qid %>
+
+			<%= f.label q.query %>
+			<%= f.text_field :int_val %>
+			<%= f.submit %>
+		<% end %>
+	</div>
+
+
+	<% qid = 2 %>
+	<div id="question-<%= qid %>" class="question-group <%= qid %>">
+		<% q = Question.find( qid ) %>
+		<% r = Response.new %>
+		<%= form_for(r) do |f|%>
+			<%= hidden_field_tag :user_id, user.id %>
+			<%= hidden_field_tag :question_id, qid %>
+
+			<%= f.label q.query %>
+			<%= f.text_field :int_val %>
+			<%= f.submit %>
+		<% end %>
+	</div>
+
+
+	<% qid = 7 %>
+	<div id="question-<%= qid %>" class="question-group <%= qid %>">
+		<% q = Question.find( qid ) %>
+		<% r = Response.new %>
+		<%= form_for(r) do |f|%>
+			<%= hidden_field_tag :user_id, user.id %>
+			<%= hidden_field_tag :question_id, qid %>
+
+			<%= f.label q.query %>
+			<%= f.text_field :int_val %>
+			<%= f.submit %>
+		<% end %>
+	</div>
+
+
+	<% qid = 14 %>
+	<div id="question-<%= qid %>" class="question-group <%= qid %>">
+		<% q = Question.find( qid ) %>
+		<% r = Response.new %>
+		<%= form_for(r) do |f|%>
+			<%= hidden_field_tag :user_id, user.id %>
+			<%= hidden_field_tag :question_id, qid %>
+
+			<%= f.label q.query %>
+			<%= f.text_field :int_val %>
+			<%= f.submit %>
+		<% end %>
+	</div>
+
+	<% qid = 13 %>
+	<div id="question-<%= qid %>" class="question-group <%= qid %>">
+		<% q = Question.find( qid ) %>
+		<% r = Response.new %>
+		<%= form_for(r) do |f|%>
+			<%= hidden_field_tag :user_id, user.id %>
+			<%= hidden_field_tag :question_id, qid %>
+
+			<%= f.label q.query %>
+			<%= f.text_field :int_val %>
+			<%= f.submit %>
+		<% end %>
+	</div>
+
+</div>

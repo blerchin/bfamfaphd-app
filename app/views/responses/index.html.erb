@@ -16,8 +16,8 @@
   <tbody>
     <% @responses.each do |response| %>
       <tr>
-        <td><%= response.user %></td>
-        <td><%= response.question %></td>
+				<td><%= response.user.id rescue nil %></td>
+				<td><%= response.question.id rescue nil %></td>
         <td><%= response.int_val %></td>
         <td><%= response.string_val %></td>
         <td><%= link_to 'Show', response %></td>

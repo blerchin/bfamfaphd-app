@@ -20,11 +20,13 @@
 	<% user = User.create %>
 
 	<div id="question-email" class="question-group email">
-		<%= form_for(user) do |f| %>
+		<%= validated_form_for(user) do |f| %>
 			<%= f.label "What is your email?" %>
-			<p>Entering your email will allow you to resume this application or edit your answers later. It will also allow us to contact you with news and information about this project. This field is not required.
-			<%= f.text_field :email %>
-			<%= f.submit %>
+			<p>Entering your email will allow us to contact you with news and information about this project.</p>
+			<div class="form-group">
+				<input class="form-control" type="email" id="user_email" name="user[email]" parsley-trigger="keyup" required>
+				<%= f.submit "Save Email", class: "btn btn-primary" %>
+			</div>
 
 		<% end %>
 	</div>
@@ -33,13 +35,17 @@
 	<div id="question-<%= qid %>" class="question-group <%= qid %>">
 		<% q = Question.find( qid ) %>
 		<% r = Response.new %>
-		<%= form_for(r) do |f|%>
-			<%= hidden_field_tag :user_id, user.id %>
-			<%= hidden_field_tag :question_id, qid %>
+		<%= validated_form_for(r) do |f| %>
+			<%= f.hidden_field :user_id, value: user.id %>
+			<%= f.hidden_field :question_id, value: qid %>
 
 			<%= f.label q.query %>
-			<%= f.text_field :int_val %>
-			<%= f.submit %>
+			<%= f.text_field :int_val, 
+											class: "form-control",
+											"parsley-type"=>"number",
+											"parsley-trigger"=>"keyup" 
+				%>
+			<%= f.submit "Next", class: "btn btn-primary" %>
 		<% end %>
 	</div>
 
@@ -48,13 +54,19 @@
 	<div id="question-<%= qid %>" class="question-group <%= qid %>">
 		<% q = Question.find( qid ) %>
 		<% r = Response.new %>
-		<%= form_for(r) do |f|%>
-			<%= hidden_field_tag :user_id, user.id %>
-			<%= hidden_field_tag :question_id, qid %>
+		<%= validated_form_for(r) do |f|%>
+			<%= f.hidden_field :user_id, value: user.id %>
+			<%= f.hidden_field :question_id, value: qid %>
 
 			<%= f.label q.query %>
-			<%= f.text_field :int_val %>
-			<%= f.submit %>
+
+			<%= f.label "yes" %>
+			<%= f.radio_button :string_val,
+													"yes"%>
+			<%= f.label "no" %>
+			<%= f.radio_button :string_val,
+													"no"%>
+			<%= f.submit "Next", class: "btn btn-primary" %>
 		<% end %>
 	</div>
 
@@ -63,13 +75,19 @@
 	<div id="question-<%= qid %>" class="question-group <%= qid %>">
 		<% q = Question.find( qid ) %>
 		<% r = Response.new %>
-		<%= form_for(r) do |f|%>
-			<%= hidden_field_tag :user_id, user.id %>
-			<%= hidden_field_tag :question_id, qid %>
+		<%= validated_form_for(r) do |f|%>
+			<%= f.hidden_field :user_id, value: user.id %>
+			<%= f.hidden_field :question_id, value: qid %>
 
 			<%= f.label q.query %>
-			<%= f.text_field :int_val %>
-			<%= f.submit %>
+
+			<%= f.label "yes" %>
+			<%= f.radio_button :string_val,
+													"yes"%>
+			<%= f.label "no" %>
+			<%= f.radio_button :string_val,
+													"no"%>
+			<%= f.submit "Next", class: "btn btn-primary" %>
 		<% end %>
 	</div>
 
@@ -79,8 +97,8 @@
 		<% q = Question.find( qid ) %>
 		<% r = Response.new %>
 		<%= form_for(r) do |f|%>
-			<%= hidden_field_tag :user_id, user.id %>
-			<%= hidden_field_tag :question_id, qid %>
+			<%= f.hidden_field :user_id, value: user.id %>
+			<%= f.hidden_field :question_id, value: qid %>
 
 			<%= f.label q.query %>
 			<%= f.text_field :int_val %>
@@ -93,8 +111,8 @@
 		<% q = Question.find( qid ) %>
 		<% r = Response.new %>
 		<%= form_for(r) do |f|%>
-			<%= hidden_field_tag :user_id, user.id %>
-			<%= hidden_field_tag :question_id, qid %>
+			<%= f.hidden_field :user_id, value: user.id %>
+			<%= f.hidden_field :question_id, value: qid %>
 
 			<%= f.label q.query %>
 			<%= f.text_field :int_val %>

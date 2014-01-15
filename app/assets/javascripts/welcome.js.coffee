@@ -19,7 +19,6 @@ $ ->
 
 
 	$(document).on "submitClicked", (e, submitEvent) ->
-		console.log "submitClicked"
 		$f = $(submitEvent.target).parents('form')
 		action = $f.attr("action")
 		
@@ -40,7 +39,6 @@ $ ->
 			selectQuestionRel(1)
 	
 	$(document).on "backClicked", (e, clickEvent) ->
-		console.log 'back'
 		selectQuestionRel(-1)
 		
 	wireUpButtons(exports.$jumbotron)
@@ -60,14 +58,12 @@ wireUpButtons = ($el)->
 workingGroupLogic = ($el) ->
 	$wg = $el.find('input[name=join-a-group]')
 	$pool = $el.find('input[value="pool-money"]')
-	console.log exports.pool_money
 
 	return selectQuestionRel(1) if $el.attr('id') is 'question-22'	and not exports.join_a_group
 	return selectQuestionRel(1) if ($el.attr('id') is 'question-23') and not exports.pool_money
 
 	return if $wg.length is 0
 	$questions = $el.find('#working-group-questions')
-	console.log 'working group questions'
 
 	exports.join_a_group = false
 	exports.pool_money = false
@@ -79,7 +75,6 @@ workingGroupLogic = ($el) ->
 		true #click needs to bubble
 
 	hideShow = ->
-		console.log "hideShow"
 		if $wg.prop('checked')
 			exports.join_a_group = true
 			$questions.show()

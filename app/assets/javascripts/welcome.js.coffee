@@ -59,16 +59,24 @@ wireUpButtons = ($el)->
 
 workingGroupLogic = ($el) ->
 	$wg = $el.find('input[name=join-a-group]')
-	console.log $wg
+	$pool = $el.find('input[value="pool-money"]')
+	console.log exports.pool_money
 
-	selectQuestionRel(1) if $el.attr('id') is 'question-22'	and not exports.join_a_group
+	return selectQuestionRel(1) if $el.attr('id') is 'question-22'	and not exports.join_a_group
+	return selectQuestionRel(1) if ($el.attr('id') is 'question-23') and not exports.pool_money
 
 	return if $wg.length is 0
 	$questions = $el.find('#working-group-questions')
+	console.log 'working group questions'
 
 	exports.join_a_group = false
+	exports.pool_money = false
 	$wg.parent().on "click", ->
 		 hideShow()
+
+	$pool.on "click", ->
+		exports.pool_money = $pool.prop('checked')
+		true #click needs to bubble
 
 	hideShow = ->
 		console.log "hideShow"
@@ -79,6 +87,8 @@ workingGroupLogic = ($el) ->
 			exports.join_a_group = false
 			$questions.hide()
 	hideShow()
+	
+	
 			
 
 selectQuestionRel = (change) ->

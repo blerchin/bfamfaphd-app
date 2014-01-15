@@ -10,7 +10,7 @@
 			<div class="question-group">
 				<form>
 					<h2>So you want to join forces?</h2>
-					<p>We have a few questions for you. Click below to get started.</p>
+					<p>This application makes manifest your interest in the collective power of creative graduates, as well as your commitment to working with BFAMFAPHD.com. Please answer 7 questions to apply.</p>
 					<p><input type="submit" value="Get Started" class="btn btn-primary btn-lg" role="button"/></p>	
 			</form>
 		</div>
@@ -24,11 +24,11 @@
 	<div id="question-email" class="question-group email">
 		<%= validated_form_for(user) do |f| %>
 			<label>What is your name?</label>
-				<input class="form-control" type="text" id="user_name" name="user[full_name]" parsley-trigger="keyup" required>
+				<input class="form-control" type="text" id="user_name" name="user[full_name]" parsley-trigger="changed" required>
 			<label>What is your email?</label>
 			<p>Entering your email will allow us to contact you with news and information about this project.</p>
 			<div class="form-group">
-				<input class="form-control" type="email" id="user_email" name="user[email]" parsley-trigger="keyup" required>
+				<input class="form-control" type="email" id="user_email" name="user[email]" parsley-trigger="changed" required>
 				<%= f.submit "Next", class: "btn btn-primary" %>
 			</div>
 
@@ -222,7 +222,7 @@
 	<div id="question-thanks" class="question-group thanks">
 		<h2>Thank you!</h2>
 
-		<p>You will be contacted by March 1st with information about pooling money, working groups, and your involvement in BFAMFAPHD.com. Please join us on February 2nd at The Queens Museum of Art for an open house. You will help shape the direction of BFAMFAPHD.com, meet members of the data visualization working group, and see BFAMFAPHD.com in action.</p>
+		<p>You will be contacted by March 1st with information about pooling money, working groups, and your involvement in BFAMFAPHD.com. Please join us on February 2nd at <a href="http://www.queensmuseum.org/events/qm-studio-artist-caroline-woolard-hosts-open-house-for-new-project-bfamfaphd-com/">The Queens Museum of Art</a> for an open house. You will help shape the direction of BFAMFAPHD.com, meet members of the data visualization working group, and see BFAMFAPHD.com in action.</p>
 	</div>
 
 

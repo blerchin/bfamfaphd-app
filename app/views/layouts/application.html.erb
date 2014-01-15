@@ -3,6 +3,13 @@
 <head>
   <title>BfamfaphdApp</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<!--[if lt IE9]>
+		<style>
+			* {
+				box-sizing: auto;
+			}
+	</style>
+	<![endif]-->
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "http://fast.fonts.net/jsapi/8da6cfce-072e-4d64-8bbe-9c8b672b9bc9.js" %>
   <%= csrf_meta_tags %>

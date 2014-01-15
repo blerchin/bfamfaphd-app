@@ -1,4 +1,5 @@
 class ResponsesController < ApplicationController
+	http_basic_authenticate_with name: "admin", password: "artistsunite", except: [:create, :update]
   before_action :set_response, only: [:show, :edit, :update, :destroy]
 
   # GET /responses
@@ -24,6 +25,9 @@ class ResponsesController < ApplicationController
   # POST /responses
   # POST /responses.json
   def create
+		sleep 1
+		
+
     @response = Response.new(response_params)
 
     respond_to do |format|
@@ -69,6 +73,11 @@ class ResponsesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def response_params
-      params.require(:response).permit(:user_id, :question_id, :int_val, :string_val)
+      p = params.require(:response).permit(:user_id, :question_id, :int_val, :string_val, :array_val =>[ ])
+			#save multiple choice q's as json array
+			unless p['array_val'].nil?
+				p['array_val'] = p['array_val'].to_json
+			end
+			p
     end
 end

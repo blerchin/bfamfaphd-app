@@ -1,9 +1,11 @@
 <div class="container">
+<!--
 	<div class="page-header">
 		<h1>BFAMFAPHD.com
-			<small>Artist Application</small>
+			<small>Apply to Join Forces</small>
 		</h1>
 	</div>
+-->
 	<div class="jumbotron">
 			<div class="question-group">
 				<form>
@@ -21,17 +23,35 @@
 
 	<div id="question-email" class="question-group email">
 		<%= validated_form_for(user) do |f| %>
-			<%= f.label "What is your email?" %>
+			<label>What is your name?</label>
+				<input class="form-control" type="text" id="user_name" name="user[full_name]" parsley-trigger="keyup" required>
+			<label>What is your email?</label>
 			<p>Entering your email will allow us to contact you with news and information about this project.</p>
 			<div class="form-group">
 				<input class="form-control" type="email" id="user_email" name="user[email]" parsley-trigger="keyup" required>
-				<%= f.submit "Save Email", class: "btn btn-primary" %>
+				<%= f.submit "Next", class: "btn btn-primary" %>
 			</div>
 
 		<% end %>
 	</div>
 
-	<% qid = 5 %>
+	<% qid = 24 %>
+	<div id="question-<%= qid %>" class="question-group <%= qid %>">
+		<% q = Question.find( qid ) %>
+		<% r = Response.new %>
+		<%= form_for(r) do |f|%>
+			<%= f.hidden_field :user_id, value: user.id %>
+			<%= f.hidden_field :question_id, value: qid %>
+
+			<label><%=q.query%></label>
+			<%= f.text_field :int_val, class: 'form-control', required: "" %>
+
+			<input type='button' class='btn btn-link' value='Back' name='Back'/>
+			<%= f.submit "Next", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+
+	<% qid = 20 %>
 	<div id="question-<%= qid %>" class="question-group <%= qid %>">
 		<% q = Question.find( qid ) %>
 		<% r = Response.new %>
@@ -39,18 +59,55 @@
 			<%= f.hidden_field :user_id, value: user.id %>
 			<%= f.hidden_field :question_id, value: qid %>
 
-			<%= f.label q.query %>
-			<%= f.text_field :int_val, 
-											class: "form-control",
-											"parsley-type"=>"number",
-											"parsley-trigger"=>"keyup" 
-				%>
+			<label><%= q.query %></label>
+			<div class="input-group">
+				<input type="checkbox" name="response[array_val][]" value="Associates"/>
+				<label>Associates</label>
+			</div>
+			<div class="input-group">
+				<input type="checkbox" name="response[array_val][]" value="BA"/>
+				<label>BA</label>
+			</div>
+			<div class="input-group">
+				<input type="checkbox" name="response[array_val][]" value="BFA"/>
+				<label>BFA</label>
+			</div>
+			<div class="input-group">
+				<input type="checkbox" name="response[array_val][]" value="MFA" />
+				<label>MFA</label>
+			</div>
+			<div class="input-group">
+				<input type="checkbox" name="response[array_val][]" value="PhD"/>
+				<label>PhD</label>
+			</div>
+			<div class="input-group">
+				<input type="checkbox" name="response[array_val][]" value="home school"/>
+				<label>home school</label>
+			</div>
+			<div class="input-group">
+				<input type="checkbox" name="response[array_val][]" value="apprenticeship"/>
+				<label>apprenticeship</label>
+			</div>
+			<div class="input-group">
+				<input type="checkbox" name="response[array_val][]" value="alternative school"/>
+				<label>alternative school</label>
+			</div>
+			<div class="input-group">
+				<input type="checkbox" name="response[array_val][]" value="freedom school"/>
+				<label>freedom school</label>
+			</div>
+			<div class="input-group">
+				<input type="checkbox" name="response[array_val][]" value="non-degree-granting school" />
+				<label>non-degree-granting school</label>
+			</div>
+
+			<input type='button' class='btn btn-link' value='Back' name='Back'/>
 			<%= f.submit "Next", class: "btn btn-primary" %>
 		<% end %>
 	</div>
 
 
-	<% qid = 2 %>
+	<% qid = 21 %>
 	<div id="question-<%= qid %>" class="question-group <%= qid %>">
 		<% q = Question.find( qid ) %>
 		<% r = Response.new %>
@@ -58,66 +115,115 @@
 			<%= f.hidden_field :user_id, value: user.id %>
 			<%= f.hidden_field :question_id, value: qid %>
 
-			<%= f.label q.query %>
+			<label><%=q.query%></label>
 
-			<%= f.label "yes" %>
-			<%= f.radio_button :string_val,
-													"yes"%>
-			<%= f.label "no" %>
-			<%= f.radio_button :string_val,
-													"no"%>
+			<div class="input-group">
+				<input type="checkbox" name="join-a-group"/>
+				<label>Join a BFA MFA PHD working group</label>
+			</div>
+			<div id="working-group-questions" class="sub-form">
+				<div class="input-group">
+					<input type="checkbox" name="response[array_val][]" value="facilitating dialog"/>
+					<label>facilitating dialog online and at events</label>
+				</div>
+
+				<div class="input-group">
+					<input type="checkbox" name="response[array_val][]" value="corresponding with prospective members"/>
+					<label>corresponding with prospective members</label>
+				</div>
+
+				<div class="input-group">
+					<input type="checkbox" name="response[array_val][]" value="eliciting proposals for mobilizing"/>
+					<label>eliciting proposals for mobilizing (artist union, buying a building, etc.)</label>
+				</div>
+
+				<div class="input-group">
+					<input type="checkbox" name="response[array_val][]" value="mobilizing creative people"/>
+					<label>mobilizing creative people</label>
+				</div>
+
+				<div class="input-group">
+					<input type="checkbox" name="response[array_val][]" value="producing video"/>
+					<label>producing video</label>
+				</div>
+
+				<div class="input-group">
+					<input type="checkbox" name="response[array_val][]" value="furniture design and production"/>
+					<label>furniture design and production</label>
+				</div>
+
+				<div class="input-group">
+					<input type="checkbox" name="response[array_val][]" value="graphic design and data visualization"/>
+					<label>clothing design and production</label>
+				</div>
+
+				<div class="input-group">
+					<input type="checkbox" name="response[array_val][]" value="data colllection and analysis"/>
+					<label>data collection and analysis</label>
+				</div>
+				
+				<div class="input-group">
+					<input type="checkbox" name="response[array_val][]" value="web design and computer engineering"/>
+					<label>web design and computer engineering</label>
+				</div>
+				<div class="input-group">
+					<input type="checkbox" name="response[array_val][]" value="other"/>
+					<label>other (propose a group on next page)</label>
+				</div>
+
+			</div>
+				
+			<div class="input-group">
+				<input type="checkbox" name="response[array_val][]" value="pool-money"/>
+				<label>Pool money to buy a building with a group to form a school</label>
+			</div>
+
+			<input type='button' class='btn btn-link' value='Back' name='Back'/>
+			<%= f.submit "Next", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+	<% #fears and aspirations related to group work %>
+	<% qid = 22 %> 
+	<div id="question-<%= qid %>" class="question-group <%= qid %>">
+		<% q = Question.find( qid ) %>
+		<% r = Response.new %>
+		<%= validated_form_for(r) do |f| %>
+			<%= f.hidden_field :user_id, value: user.id %>
+			<%= f.hidden_field :question_id, value: qid %>
+
+			<label><%= q.query %></label>
+			<%= f.text_area :string_val, 
+														class: "form-control",
+														"rows" => "3",
+														"parsley-maxwords"=>"500" %>
+
 			<%= f.submit "Next", class: "btn btn-primary" %>
 		<% end %>
 	</div>
 
-
-	<% qid = 7 %>
+	<% qid = 23 %> 
 	<div id="question-<%= qid %>" class="question-group <%= qid %>">
 		<% q = Question.find( qid ) %>
 		<% r = Response.new %>
-		<%= validated_form_for(r) do |f|%>
+		<%= validated_form_for(r) do |f| %>
 			<%= f.hidden_field :user_id, value: user.id %>
 			<%= f.hidden_field :question_id, value: qid %>
 
-			<%= f.label q.query %>
+			<label><%= q.query %></label>
+			<%= f.text_area :string_val, 
+														class: "form-control",
+														"rows" => "3",
+														"parsley-maxwords"=>"500" %>
 
-			<%= f.label "yes" %>
-			<%= f.radio_button :string_val,
-													"yes"%>
-			<%= f.label "no" %>
-			<%= f.radio_button :string_val,
-													"no"%>
 			<%= f.submit "Next", class: "btn btn-primary" %>
 		<% end %>
 	</div>
 
+	<div id="question-thanks" class="question-group thanks">
+		<h2>Thank you!</h2>
 
-	<% qid = 14 %>
-	<div id="question-<%= qid %>" class="question-group <%= qid %>">
-		<% q = Question.find( qid ) %>
-		<% r = Response.new %>
-		<%= form_for(r) do |f|%>
-			<%= f.hidden_field :user_id, value: user.id %>
-			<%= f.hidden_field :question_id, value: qid %>
-
-			<%= f.label q.query %>
-			<%= f.text_field :int_val %>
-			<%= f.submit %>
-		<% end %>
+		<p>You will be contacted by March 1st with information about pooling money, working groups, and your involvement in BFAMFAPHD.com. Please join us on February 2nd at The Queens Museum of Art for an open house. You will help shape the direction of BFAMFAPHD.com, meet members of the data visualization working group, and see BFAMFAPHD.com in action.</p>
 	</div>
 
-	<% qid = 13 %>
-	<div id="question-<%= qid %>" class="question-group <%= qid %>">
-		<% q = Question.find( qid ) %>
-		<% r = Response.new %>
-		<%= form_for(r) do |f|%>
-			<%= f.hidden_field :user_id, value: user.id %>
-			<%= f.hidden_field :question_id, value: qid %>
-
-			<%= f.label q.query %>
-			<%= f.text_field :int_val %>
-			<%= f.submit %>
-		<% end %>
-	</div>
 
 </div>

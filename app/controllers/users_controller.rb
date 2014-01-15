@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
+	http_basic_authenticate_with name: "admin", password: "artistsunite", except: [:create, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.where("full_name <> ''")
   end
 
   # GET /users/1
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render action: 'show', status: :ok, location: @user }
       else
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }

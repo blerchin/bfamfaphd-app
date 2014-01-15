@@ -9,6 +9,16 @@
   <strong>Full name:</strong>
   <%= @user.full_name %>
 </p>
+<div class="responses">
+	<%= @user.responses.each do |res| %>
+		<div class="response">
+			<strong><%=res.question.query %></strong>
+			<p><%=res.string_val %></p>
+			<p><%=res.int_val %></p>
+			<p><%=res.array_val %></p>
+		</div>
+	<% end %>
+</div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', edit_user_path(@user), class: "btn btn-warning" %> |
+<%= link_to 'Back', users_path, class: "btn btn-primary" %>

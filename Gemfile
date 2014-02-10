@@ -50,3 +50,5 @@ gem 'unicorn'
 gem 'therubyracer'
 gem 'less-rails'
 
+gem 'rails_12factor', group: :production
+

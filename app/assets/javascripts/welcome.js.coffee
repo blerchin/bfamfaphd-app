@@ -35,6 +35,10 @@ $ ->
 					success: ->
 						$f.find('input[type=submit]').removeAttr('disabled')
 						selectQuestionRel(1)
+					error: (data) ->
+						$f.append "<p>Oops! We ran into an error while processing your response. Please try again or email us at info@bfamfaphd.com</p>"
+						$f.append data.errors
+						$f.find('input[type=submit]').removeAttr('disabled')
 		else
 			selectQuestionRel(1)
 	

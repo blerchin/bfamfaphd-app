@@ -34,7 +34,7 @@ class ResponsesController < ApplicationController
       else
         format.html { render action: 'new' }
         format.json { render json: @response.errors, status: :unprocessable_entity }
-      end
+       end
     end
   end
 

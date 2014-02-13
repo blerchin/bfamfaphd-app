@@ -70,7 +70,7 @@ class ResponsesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def response_params
-      p = params.require(:response).permit(:user_id, :question_id, :int_val, :string_val, :array_val =>[ ])
+      p = params.require(:response).permit(:user_id, :question_id, :int_val, :string_val, :text_val, :array_val =>[ ])
 			#save multiple choice q's as json array
 			unless p['array_val'].nil?
 				p['array_val'] = p['array_val'].to_json
